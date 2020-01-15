@@ -344,15 +344,17 @@ setInterval(function() { makeTimer(); }, 1000);
 
 })(jQuery);
 
-function updateCardCounter() {
-	let addedProducts = JSON.parse(localStorage.getItem('products'));
-	if (addedProducts != null) {
-		$("#cart").html('<span class="icon-shopping_cart"></span>[' + addedProducts.length + ']');
+function updateCart() {
+	let cart = JSON.parse(localStorage.getItem('products'));
+	if (cart != null) {
+		$("#cart").html('<span class="icon-shopping_cart"></span>[' + cart.length + ']');
 	}
+
+	updateTotalPrices();
 }
 
-$(document).ready( function () {
-	updateCardCounter();
+$(document).ready(function () {
+	updateCart();
 });
 
 var products = [
@@ -381,3 +383,21 @@ var products = [
 		"image": "images/apple.jpg"
 	}
 ]
+
+function getTotalPrice() {
+	let cart = JSON.parse(localStorage.getItem('products'));
+
+	if (cart != null) {
+		var total = 0.00;
+		for (var i = 0; i < cart.length; ++ i) {
+			total += cart[i].product.price * cart[i].count;
+		}
+	}
+
+	return "$" + parseFloat(total).toFixed(2);
+}
+
+function updateTotalPrices() {
+	$("#total_price").html(getTotalPrice());
+	$("#subtotal_price").html(getTotalPrice());
+}
