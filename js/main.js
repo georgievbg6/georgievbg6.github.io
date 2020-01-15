@@ -344,3 +344,40 @@ setInterval(function() { makeTimer(); }, 1000);
 
 })(jQuery);
 
+function updateCardCounter() {
+	let addedProducts = JSON.parse(localStorage.getItem('products'));
+	if (addedProducts != null) {
+		$("#cart").html('<span class="icon-shopping_cart"></span>[' + addedProducts.length + ']');
+	}
+}
+
+$(document).ready( function () {
+	updateCardCounter();
+});
+
+var products = [
+	{
+		"id": 1,
+		"name": "Bell Peppers",
+		"price": 2.00,
+		"image": "images/bellpepper.jpg"
+	},
+	{
+		"id": 2,
+		"name": "Strawberries",
+		"price": 6.00,
+		"image": "images/strawberry.jpg"
+	},
+	{
+		"id": 3,
+		"name": "Tomatoes",
+		"price": 3.00,
+		"image": "images/tomatoe.jpg"
+	},
+	{
+		"id": 4,
+		"name": "Apples",
+		"price": 2.00,
+		"image": "images/apple.jpg"
+	}
+]
