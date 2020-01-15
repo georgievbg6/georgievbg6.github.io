@@ -6,7 +6,7 @@ function addToCard(id) {
 	}
 	
 	addProductToCard(id, cart);
-	updateCartCounter();
+	updateCart();
 
 	alert("Your product has been added to the cart");
 }
